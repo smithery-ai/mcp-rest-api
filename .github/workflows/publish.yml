@@ -37,6 +37,8 @@ jobs:
           output-file: 'CHANGELOG.md'
           skip-version-file: false
           skip-commit: false
+          git-user-name: ${{ secrets.CHANGELOG_GIT_NAME }}
+          git-user-email: ${{ secrets.CHANGELOG_GIT_EMAIL }}
 
       - name: Build
         run: npm run build
