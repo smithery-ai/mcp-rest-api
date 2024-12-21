@@ -39,7 +39,9 @@ Add to `C:\Users\<YourUsername>\AppData\Roaming\Code\User\globalStorage\saoudriz
         "AUTH_BEARER": "your-token",
         // OR API Key
         "AUTH_APIKEY_HEADER_NAME": "X-API-Key",
-        "AUTH_APIKEY_VALUE": "your-api-key"
+        "AUTH_APIKEY_VALUE": "your-api-key",
+        // SSL Verification (enabled by default)
+        "REST_ENABLE_SSL_VERIFY": "false" // Set to false to disable SSL verification for self-signed certificates
       }
     }
   }
@@ -66,7 +68,9 @@ Add to `~/Library/Application Support/Code/User/globalStorage/saoudrizwan.claude
         "AUTH_BEARER": "your-token",
         // OR API Key
         "AUTH_APIKEY_HEADER_NAME": "X-API-Key",
-        "AUTH_APIKEY_VALUE": "your-api-key"
+        "AUTH_APIKEY_VALUE": "your-api-key",
+        // SSL Verification (enabled by default)
+        "REST_ENABLE_SSL_VERIFY": "false" // Set to false to disable SSL verification for self-signed certificates
       }
     }
   }
@@ -85,6 +89,10 @@ Note: Replace the environment variables with your actual values. Only configure 
 - Detailed response information including status, headers, and body
 - Custom header support
 - Request body handling for POST/PUT methods
+- SSL Certificate Verification:
+  - Enabled by default for secure operation
+  - Can be disabled for self-signed certificates or development environments
+  - Control via REST_ENABLE_SSL_VERIFY environment variable
 - Multiple authentication methods:
   - Basic Authentication (username/password)
   - Bearer Token Authentication

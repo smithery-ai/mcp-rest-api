@@ -7,7 +7,7 @@ import {
   ListToolsRequestSchema,
   McpError,
 } from '@modelcontextprotocol/sdk/types.js';
-import axios, { AxiosRequestConfig, Method } from 'axios';
+import axios, { AxiosInstance, AxiosRequestConfig, Method } from 'axios';
 
 if (!process.env.REST_BASE_URL) {
   throw new Error('REST_BASE_URL environment variable is required');
@@ -17,6 +17,7 @@ const AUTH_BASIC_PASSWORD = process.env.AUTH_BASIC_PASSWORD;
 const AUTH_BEARER = process.env.AUTH_BEARER;
 const AUTH_APIKEY_HEADER_NAME = process.env.AUTH_APIKEY_HEADER_NAME;
 const AUTH_APIKEY_VALUE = process.env.AUTH_APIKEY_VALUE;
+const REST_ENABLE_SSL_VERIFY = process.env.REST_ENABLE_SSL_VERIFY !== 'false';
 
 interface EndpointArgs {
   method: 'GET' | 'POST' | 'PUT' | 'DELETE';
@@ -38,10 +39,14 @@ const hasBearerAuth = () => !!AUTH_BEARER;
 const hasApiKeyAuth = () => AUTH_APIKEY_HEADER_NAME && AUTH_APIKEY_VALUE;
 
 class RestTester {
-  private server: Server;
-  private axiosInstance;
+  private server!: Server;
+  private axiosInstance!: AxiosInstance;
 
   constructor() {
+    this.setupServer();
+  }
+
+  private async setupServer() {
     this.server = new Server(
       {
         name: 'rest-tester',
@@ -54,9 +59,13 @@ class RestTester {
       }
     );
 
+    const https = await import('https');
     this.axiosInstance = axios.create({
       baseURL: process.env.REST_BASE_URL,
       validateStatus: () => true, // Allow any status code
+      httpsAgent: REST_ENABLE_SSL_VERIFY ? undefined : new https.Agent({ // Disable SSL verification only when explicitly set to false
+        rejectUnauthorized: false
+      })
     });
 
     this.setupToolHandlers();
@@ -76,6 +85,8 @@ class RestTester {
           description: `Test a REST API endpoint and get detailed response information. 
 
 Base URL: ${process.env.REST_BASE_URL}
+
+SSL Verification: ${REST_ENABLE_SSL_VERIFY ? 'Enabled (default)' : 'Disabled (set REST_ENABLE_SSL_VERIFY=false to disable for self-signed certificates)'}
 
 Authentication: ${
   hasBasicAuth() ? 
@@ -254,6 +265,7 @@ Error Handling:
   }
 
   async run() {
+    await this.setupServer();
     const transport = new StdioServerTransport();
     await this.server.connect(transport);
     console.error('REST API Tester MCP server running on stdio');
