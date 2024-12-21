@@ -5,7 +5,7 @@
   "license": "MIT",
   "type": "module",
   "bin": {
-    "mcp-rest-api": "./build/index.js"
+    "dkmaker-mcp-rest-api": "./build/index.js"
   },
   "files": [
     "build",
