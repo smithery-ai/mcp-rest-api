@@ -1,0 +1,51 @@
+{
+  "name": "dkmaker-mcp-rest-api",
+  "version": "0.1.1",
+  "description": "A generic REST API tester for testing HTTP endpoints",
+  "license": "MIT",
+  "type": "module",
+  "bin": {
+    "mcp-rest-api": "./build/index.js"
+  },
+  "files": [
+    "build",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "prepare": "npm run build",
+    "watch": "tsc --watch",
+    "inspector": "npx @modelcontextprotocol/inspector build/index.js"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.4",
+    "axios": "^1.7.9"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.24",
+    "typescript": "^5.3.3"
+  },
+  "keywords": [
+    "mcp",
+    "rest",
+    "api",
+    "http",
+    "testing",
+    "cline",
+    "development",
+    "typescript"
+  ],
+  "author": "zenturacp",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zenturacp/mcp-rest-api.git"
+  },
+  "bugs": {
+    "url": "https://github.com/zenturacp/mcp-rest-api/issues"
+  },
+  "homepage": "https://github.com/zenturacp/mcp-rest-api#readme",
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
