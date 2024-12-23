@@ -1,4 +1,6 @@
+```markdown
 # MCP REST API Tester
+[![smithery badge](https://smithery.ai/badge/dkmaker-mcp-rest-api)](https://smithery.ai/server/dkmaker-mcp-rest-api)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![NPM Package](https://img.shields.io/npm/v/dkmaker-mcp-rest-api.svg)](https://www.npmjs.com/package/dkmaker-mcp-rest-api)
 
@@ -9,6 +11,14 @@ A TypeScript-based MCP server that enables testing of REST APIs through Cline. T
 </a>
 
 ## Installation
+
+### Installing via Smithery
+
+To install REST API Tester for Claude Desktop automatically via [Smithery](https://smithery.ai/server/dkmaker-mcp-rest-api):
+
+```bash
+npx -y @smithery/cli install dkmaker-mcp-rest-api --client claude
+```
 
 1. Install the package globally:
 ```bash
@@ -157,3 +167,4 @@ npm run watch
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+```
