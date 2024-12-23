@@ -1,4 +1,3 @@
-```markdown
 # MCP REST API Tester
 [![smithery badge](https://smithery.ai/badge/dkmaker-mcp-rest-api)](https://smithery.ai/server/dkmaker-mcp-rest-api)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
@@ -20,6 +19,7 @@ To install REST API Tester for Claude Desktop automatically via [Smithery](https
 npx -y @smithery/cli install dkmaker-mcp-rest-api --client claude
 ```
 
+### Installing Manually
 1. Install the package globally:
 ```bash
 npm install -g dkmaker-mcp-rest-api
@@ -167,4 +167,3 @@ npm run watch
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-```
